@@ -32,7 +32,9 @@ namespace DataAccess.Models
         [ForeignKey("AuthorId")]
         public ApplicationUser? PostAuthor { get; set; }
         [ForeignKey("StatusId")]
-        public Status? Status { get; set; }
+        public Status Status { get; set; }
+
+        public List<Tag> Tags { get; set; }
 
     }
 }

@@ -13,8 +13,7 @@ namespace DataAccess.Models
         [StringLength(256)]
         public string TagName { get; set; }
 
-        [ForeignKey("PostId")]
-        public Post Post { get; set; }
+        public List<Post> Posts { get; set; }
     }
 }
 

@@ -31,4 +31,7 @@
     <Folder Include="Contexts\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utility\Utility.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,6 +1,10 @@
 using DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using DataAccess;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Utility;
+using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +18,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddScoped<DbInitializer>();
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
+builder.Services.AddScoped<UnitOfWork>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
 
 
 var app = builder.Build();
@@ -35,6 +48,13 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+SeedDatabase();
 
 app.Run();
 
+void SeedDatabase()
+{
+    using var scope = app.Services.CreateScope();
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
+    dbInitializer.Initialize();
+}
