@@ -11,18 +11,20 @@ namespace TradeHub.Pages.PostPage
 {
 	public class IndexModel : PageModel
     {
-        private readonly UnitOfWork _unitOfWork;
-        public IEnumerable<Post> ObjPostList;
-        public IndexModel(UnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-            ObjPostList = new List<Post>();
-        }
+        
+            private readonly UnitOfWork _unitOfWork;
+            public IEnumerable<Post> ObjPostList;
+            public IndexModel(UnitOfWork unitOfWork)
+            {
+                _unitOfWork = unitOfWork;
+                ObjPostList = new List<Post>();
+            }
 
-        public IActionResult OnGet()
-        {
-            ObjPostList = _unitOfWork.Post.GetAll();
-            return Page();
-        }
+            public IActionResult OnGet()
+            {
+                ObjPostList = _unitOfWork.Post.GetAll();
+                return Page();
+            }
+        
     }
 }
