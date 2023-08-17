@@ -33,7 +33,4 @@
   <ItemGroup>
     <None Remove="Pages\PostPage\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\PostPage\" />
-  </ItemGroup>
 </Project>
