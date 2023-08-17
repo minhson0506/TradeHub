@@ -5,7 +5,7 @@ namespace Infrastructure.Interfaces
 {
     public interface IUnitOfWork
     {
-        public IGenericRepository<ApplicationUser> ApplicationUser { get; }
+        public IApplicationUserRepository<ApplicationUser> ApplicationUser { get; }
         public IGenericRepository<Attachment> Attachment { get; }
         public IGenericRepository<Comment> Comment { get; }
         public IGenericRepository<Post> Post { get; }
