@@ -25,6 +25,21 @@ namespace TradeHub.Pages.PostPage
                 ObjPostList = _unitOfWork.Post.GetAll();
                 return Page();
             }
+            
+            public IActionResult OnPostMarkSold(Guid id)
+            {
+                var post = _unitOfWork.Post.GetById(id);
+                if (post != null)
+                {
+                    // Update the status of the post to "Sold"
+                    post.Status.Name = "Sold";
+                    _unitOfWork.Post.Update(post);
+                    _unitOfWork.Commit();
+                    
+                }
+
+                return RedirectToPage("/PostPage/Index");
+            }
         
     }
 }

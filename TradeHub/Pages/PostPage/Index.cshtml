@@ -9,7 +9,7 @@
         <div class="col-6">
             <!--50% of row-->
             <h2 class="text-primary">
-                Product List
+                Post List
             </h2>
         </div><!-- End 1st Column-->
         <div class="col-6 text-end">
@@ -23,7 +23,7 @@
         <thead>
         <tr>
             <th>
-                Post
+                All Post
             </th>
             <th>&nbsp;</th>
         </tr>
@@ -32,15 +32,14 @@
         @foreach (var obj in Model.ObjPostList)
         {
             <tr>
-                <td width="80%">@obj.Title</td>
+                <td width="60%">@obj.Title</td>
                 <td>
-                    <div class="w-75 btn-group" role="group">
+                    <div class="w-100 btn-group" role="group">
                         <a asp-page="Upsert" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
                             <i class="bi bi-pencil-square"></i> Edit
                         </a>
-                        <a asp-page="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
-                            <i class="bi bi-trash-fill"></i> Sold
-                        </a>
+                        <a asp-page="Delete" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                             <i class="bi bi-pencil-square"></i> Delete</a>
                     </div>
                 </td>
 
