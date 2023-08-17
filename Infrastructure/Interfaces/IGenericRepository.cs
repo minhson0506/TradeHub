@@ -7,7 +7,7 @@ namespace Infrastructure.Interfaces
     {
 
         // Get object by its key id
-        T GetById(int? id);
+        T GetById(Guid? id);
 
         /* The following method will return a set of objects using an Expression filter (similar to a WHERE clause in SQL)
          Func<T, bool> represents a function that takes an object of generic type T and returns a bool on whether filter exists or not*

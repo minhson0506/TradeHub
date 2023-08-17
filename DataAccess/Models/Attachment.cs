@@ -16,7 +16,6 @@ namespace DataAccess.Models
         [Required]
         [ForeignKey("Post")]
         public Guid PostId { get; set; }
-
     }
 }
 

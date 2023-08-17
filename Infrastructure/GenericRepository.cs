@@ -133,7 +133,7 @@ namespace Infrastructure
 
         // The virtual keyword is used to modify a method, property, indexer, or
         // and allows for it to be overridden in a derived class.
-        public virtual T GetById(int? id)
+        public virtual T GetById(Guid? id)
         {
             return _dbContext.Set<T>().Find(id);
         }

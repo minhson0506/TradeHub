@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -34,6 +34,6 @@
     <None Remove="Pages\PostPage\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\PostPage\" />
+    <_ContentIncludedByDefault Remove="Pages\Posts\Index.cshtml" />
   </ItemGroup>
 </Project>

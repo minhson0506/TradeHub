@@ -1,0 +1,60 @@
+@page
+@model TradeHub.Pages.PostPage.Delete
+
+@{
+}
+
+<form method="post"  enctype="multipart/form-data">
+        <input asp-for="ObjPost.Id" hidden />
+        <input asp-for="ObjAttachment.MediaLink" hidden />
+
+        <div class="row">
+            <div class="col-10">
+                <div class="border p-3 mt-4 row">
+                    <div class="col-12 pb-2">
+                        <h2 class="text-primary">Delete Post</h2>
+                        <hr />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ObjPost.Title"></label>
+                        <input id="txtName" asp-for="ObjPost.Title" class="form-control" />
+                    </div>
+                    @if (Model.ObjAttachment != null)
+                    {
+                        <div class="col-2 pt-4">
+                            <img src="@Model.ObjAttachment.MediaLink"
+                                 width="100%" style="border-radius:5px; border:1px solid #bbb9b9" /></div>
+                    }
+                    
+                    <div class="mb-3">
+                        <label asp-for="ObjPost.Content"></label>
+                        <textarea id="txtDesc" asp-for="ObjPost.Content" rows="3" class="form-control"></textarea>
+                    </div>
+                    
+                    <div class="mb-3 col-6">
+                        <label asp-for="ObjPost.Price"></label>
+                        <input id="txtListPrice" asp-for="ObjPost.Price" class="form-control" />
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label asp-for="ObjPost.StatusId"></label>
+                        <select id="ddlStatus" asp-for="ObjPost.StatusId" asp-items="@Model.StatusList" class="form-select">
+                            <option disabled selected>--Select Status--</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
+                        
+                        <a asp-page="Index" class="btn btn-secondary" style="width:150px">
+                            Back to List
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </form>
+

@@ -3,31 +3,48 @@
 @{
 }
 
-<div class="container px-4 px-lg-5 mt-5">
-    
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+<div class="container">
+    <div class="row pt=4">
+        <!--Start Row-->
+        <div class="col-6">
+            <!--50% of row-->
+            <h2 class="text-primary">
+                Post List
+            </h2>
+        </div><!-- End 1st Column-->
+        <div class="col-6 text-end">
+            <!--50% row right justified-->
+            <a asp-page="Upsert" asp-route-id="0" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Product
+            </a>
+        </div> <!--End 2nd Column-->
+    </div> <!--End Row-->
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+        <tr>
+            <th>
+                All Post
+            </th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
         @foreach (var obj in Model.ObjPostList)
         {
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-
-                            <h5 class="fw-bolder">@obj.Title</h5>
-
-                            € @obj.Price
-                        </div>
+            <tr>
+                <td width="60%">@obj.Title</td>
+                <td>
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-page="Upsert" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-page="Delete" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                             <i class="bi bi-pencil-square"></i> Delete</a>
                     </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                    </div>
-                </div>
-            </div>
+                </td>
+
+            </tr>
         }
-
-    </div>
-</div>
+        </tbody>
+    </table>
+</div> 
