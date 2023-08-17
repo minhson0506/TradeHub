@@ -399,4 +399,6 @@ FodyWeavers.xsd
 
 .DS_Store
 .vscode 
+.idea/ 
+
 TradeHub/appsettings.json
