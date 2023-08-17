@@ -1,0 +1,23 @@
+﻿@page
+@model TradeHub.Pages.PostPage.CommentsModel
+
+<h2>Comments for @Model.PostTitle</h2>
+<a href="/Index" class="btn btn-secondary mt-3">Return</a>
+@foreach (var comment in Model.Comments)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <p class="card-text">@comment.Content</p>
+        </div>
+    </div>
+}
+
+
+<form method="post">
+    <div class="form-group">
+        <label for="content">Add a Comment</label>
+        <textarea class="form-control"  id="content" name="Content"></textarea>
+
+    </div>
+    <button type="submit" class="btn btn-primary">View Comments</button>
+</form>
