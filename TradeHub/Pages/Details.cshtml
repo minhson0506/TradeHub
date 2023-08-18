@@ -1,0 +1,39 @@
+﻿@page
+@model TradeHub.Pages.DetailsModel
+
+<form method="post">
+    <div>
+        <h5>Post Details</h5>
+
+        <table>
+            <tr>
+                <th>Title:</th>
+                <td>@Model.PostProduct.Title</td>
+            </tr>
+            <tr>
+                <th>Price:</th>
+                <td>@Model.PostProduct.Price</td>
+            </tr>
+            <tr>
+                <th>Content:</th>
+                <td>@Model.PostProduct.Content</td>
+            </tr>
+            <tr>
+                <th>Created Date:</th>
+                <td>@Model.PostProduct.CreatedDateTime</td>
+            </tr>
+            <tr>
+                <th>Modified Date:</th>
+                <td>@Model.PostProduct.ModifiedDateTime</td>
+            </tr>
+            <tr>
+                <th>Author:</th>
+                <td>@Model.PostProduct.PostAuthor</td>
+            </tr>
+            <tr>
+                <th>Status:</th>
+                <td>@Model.PostProduct.Status</td>
+            </tr>
+        </table>
+    </div>
+</form>

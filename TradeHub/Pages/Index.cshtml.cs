@@ -1,20 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DataAccess.Models;
+using Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace TradeHub.Pages;
-
-public class IndexModel : PageModel
+namespace TradeHub.Pages
 {
-    private readonly ILogger<IndexModel> _logger;
-
-    public IndexModel(ILogger<IndexModel> logger)
+	public class IndexModel : PageModel
     {
-        _logger = logger;
-    }
+        private readonly UnitOfWork _unitOfWork;
+        public IEnumerable<Post> ObjPostList;
+        public IndexModel(UnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+            ObjPostList = new List<Post>();
+        }
 
-    public void OnGet()
-    {
-
+        public IActionResult OnGet()
+        {
+            ObjPostList = _unitOfWork.Post.GetAll();
+            return Page();
+        }
     }
 }
-
