@@ -4,8 +4,49 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div class="container">
+    <div class="row pt=4">
+        <!--Start Row-->
+        <div class="col-6">
+            <!--50% of row-->
+            <h2 class="text-primary">
+                Post List
+            </h2>
+        </div><!-- End 1st Column-->
+        <div class="col-6 text-end">
+            <!--50% row right justified-->
+            <a asp-page="Upsert" asp-route-id="0" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Product
+            </a>
+        </div> <!--End 2nd Column-->
+    </div> <!--End Row-->
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    All Post
+                </th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.ObjPostList)
+            {
+                <tr>
+                    <td width="60%">@obj.Title</td>
+                    <td>
+                        <div class="w-100 btn-group" role="group">
+                            <a asp-page="Upsert" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-page="Delete" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Delete
+                            </a>
+                        </div>
+                    </td>
 
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> 

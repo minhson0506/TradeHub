@@ -39,5 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\PostDetail\" />
+    <Folder Include="Pages\PostPage\" />
   </ItemGroup>
 </Project>
