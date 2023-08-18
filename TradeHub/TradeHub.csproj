@@ -32,8 +32,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Pages\PostPage\" />
+    <None Remove="Pages\PostDetail\" />
   </ItemGroup>
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\Posts\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\PostDetail\" />
   </ItemGroup>
 </Project>

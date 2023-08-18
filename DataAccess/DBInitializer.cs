@@ -129,11 +129,21 @@ namespace DataAccess
 
             var Posts = new List<Post>
             {
-            new Post { Title = "Iphone 14", Content = "unopened", AuthorId = normalUser.Id, CreatedDateTime = DateTime.UtcNow, Price = 1200.00, StatusId = Available.Id, Tags = FirstList },
-
-                        new Post { Title = "Iphone 13", Content = "used", AuthorId = normalUser.Id, CreatedDateTime = DateTime.UtcNow, Price = 1000.00, StatusId = Reserve.Id, Tags = SecondList},
-            new Post { Title = "Iphone 12", Content = "broken", AuthorId = normalUser.Id, CreatedDateTime = DateTime.UtcNow, Price = 200.00, StatusId = Sold.Id},
-
+                new Post
+                 {
+                     Title = "Iphone 14", Content = "unopened", AuthorId = normalUser.Id,
+                     CreatedDateTime = DateTime.UtcNow, Price = 1200.00, StatusId = Available.Id, Tags = FirstList
+                 },
+                 new Post
+                 {
+                     Title = "Iphone 13", Content = "used", AuthorId = normalUser.Id, CreatedDateTime = DateTime.UtcNow,
+                     Price = 1000.00, StatusId = Reserve.Id, Tags = SecondList
+                 },
+                 new Post
+                 {
+                     Title = "Iphone 12", Content = "broken", AuthorId = normalUser.Id,
+                     CreatedDateTime = DateTime.UtcNow, Price = 200.00, StatusId = Sold.Id
+                 },
             };
 
             foreach (var m in Posts)
@@ -141,8 +151,6 @@ namespace DataAccess
                 _db.Posts.Add(m);
             }
             _db.SaveChanges();
-
-
 
         }
 

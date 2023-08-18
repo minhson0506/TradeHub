@@ -13,7 +13,7 @@ namespace Infrastructure
             _dbContext = dbContext;
         }
 
-        private IGenericRepository<ApplicationUser> _ApplicationUser;
+        private IApplicationUserRepository<ApplicationUser> _ApplicationUser;
         private IGenericRepository<Attachment> _Attachment;
         private IGenericRepository<Comment> _Comment;
         private IGenericRepository<Post> _Post;
@@ -22,14 +22,14 @@ namespace Infrastructure
 
 
         //ADD ADDITIONAL MODELS HERE
-        public IGenericRepository<ApplicationUser> ApplicationUser
+        public IApplicationUserRepository<ApplicationUser> ApplicationUser
         {
             get
             {
 
                 if (_ApplicationUser == null)
                 {
-                    _ApplicationUser = new GenericRepository<ApplicationUser>(_dbContext);
+                    _ApplicationUser = new ApplicationUserRepository(_dbContext);
                 }
 
                 return _ApplicationUser;
