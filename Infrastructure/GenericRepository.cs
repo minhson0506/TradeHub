@@ -149,7 +149,7 @@ namespace Infrastructure
             if (predicate != null && includes == null)
             {
                 return _dbContext.Set<T>()
-                    .Where(predicate)
+                    .Where(predicate).ToList()
                     .AsEnumerable();
             }
             // has optional includes
@@ -246,8 +246,6 @@ namespace Infrastructure
             }
 
         }
-
-      
 
     }
 

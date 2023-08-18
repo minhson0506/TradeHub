@@ -41,12 +41,19 @@
                             <option disabled selected>--Select Status--</option>
                         </select>
                     </div>
+
+                    <div class="mb-3 col-6">
+                        <label asp-for="ObjPost.StatusId"></label>
+                        <select id="ddlStatus" asp-for="ObjPost.Tags[0].Id" asp-items="@Model.TagList" class="form-select">
+                            <option disabled selected>--Select Tag--</option>
+                        </select>
+                    </div>
                     
                     @* Tag *@
-                    <div class="mb-3 col-6">
+                    <!--<div class="mb-3 col-6">
                         <label asp-for="TagInput">Tags (Separate tags with commas)</label>
                         <input type="text" id="txtTags" asp-for="TagInput" class="form-control"/>
-                    </div>
+                    </div>-->
 
                     <div class="col-12">
                         @if (Model.ObjPost.Id != Guid.Empty)

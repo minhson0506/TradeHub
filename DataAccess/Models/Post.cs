@@ -35,6 +35,8 @@ namespace DataAccess.Models
         public Status Status { get; set; }
 
         public List<Tag> Tags { get; set; }
+        [NotMapped]
+        public List<string> Files { get; set; }
 
     }
 }

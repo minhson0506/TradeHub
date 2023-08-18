@@ -111,6 +111,12 @@ namespace DataAccess
             new Tag { TagName = "Television" },
             };
 
+            foreach (var c in Tags)
+            {
+                _db.Tags.Add(c);
+            }
+            _db.SaveChanges();
+
             Tag Phone = _db.Tags.FirstOrDefault(u => string.Compare(u.TagName, "Phone") == 0);
             Tag Computer = _db.Tags.FirstOrDefault(u => string.Compare(u.TagName, "Computer") == 0);
 
@@ -121,11 +127,7 @@ namespace DataAccess
             SecondList.Add(Computer);
 
 
-            foreach (var c in Tags)
-            {
-                _db.Tags.Add(c);
-            }
-            _db.SaveChanges();
+            
 
             var Posts = new List<Post>
             {
@@ -136,7 +138,7 @@ namespace DataAccess
                  },
                  new Post
                  {
-                     Title = "Iphone 13", Content = "used", AuthorId = normalUser.Id, CreatedDateTime = DateTime.UtcNow,
+                     Title = "Iphone 13", Content = "used", AuthorId = user.Id, CreatedDateTime = DateTime.UtcNow,
                      Price = 1000.00, StatusId = Reserve.Id, Tags = SecondList
                  },
                  new Post
@@ -152,6 +154,22 @@ namespace DataAccess
             }
             _db.SaveChanges();
 
+            Post Iphone12 = _db.Posts.FirstOrDefault(u => string.Compare(u.Title, "Iphone 12") == 0);
+            Post Iphone13 = _db.Posts.FirstOrDefault(u => string.Compare(u.Title, "Iphone 13") == 0);
+            Post Iphone14 = _db.Posts.FirstOrDefault(u => string.Compare(u.Title, "Iphone 14") == 0);
+
+            var Attachments = new List<Attachment>
+            {
+                new Attachment{ MediaLink = "/images/iphone12.jpeg", Name = "iphone 12", PostId = Iphone12.Id},
+                new Attachment{ MediaLink = "/images/iphone13.jpeg", Name = "iphone 13", PostId = Iphone13.Id},
+                new Attachment{ MediaLink = "/images/iphone14.jpeg", Name = "iphone 14", PostId = Iphone14.Id},
+            };
+
+            foreach (var m in Attachments)
+            {
+                _db.Attachments.Add(m);
+            }
+            _db.SaveChanges();
         }
 
     }

@@ -77,27 +77,6 @@ public class UpsertModel : PageModel
             return Page();
         }
         
-        // Create tags
-        if (!string.IsNullOrWhiteSpace(TagInput))
-        {
-            string[] tagNames = TagInput.Split(',');
-            foreach (string tagName in tagNames)
-            {
-                Tag tag = new Tag { TagName = tagName.Trim() };
-                _unitOfWork.Tag.Add(tag);
-                _unitOfWork.Commit();
-            }
-        }
-        
-        //// Upload attachment if provided
-        //if (ObjAttachment.MediaLink != null)
-        //{
-            
-        //}
-
-        //return RedirectToPage("Index");
-
-
         string webRootPath = _webHostEnvironment.WebRootPath;
         var files = HttpContext.Request.Form.Files;
 
@@ -109,42 +88,43 @@ public class UpsertModel : PageModel
 
             if (files.Count > 0)
             {
+                Post NewPost = _unitOfWork.Post.GetByValue(ObjPost.Title);
                 //create a unique identifier for image name
                 string fileName = Guid.NewGuid().ToString();
 
                 //create variable to hold a path to images\products
                 var uploads = Path.Combine(webRootPath, @"images/products/"); // for Mac user
 
-                //get and preserve the extension type 
-
-                var extension = Path.GetExtension(files[0].FileName);
-
-                // create the full upload path 
-
-                var fullPath = uploads + fileName + extension;
-
-                //stream the binary write to the server
-
-                using var fileStream = System.IO.File.Create(fullPath);
-                files[0].CopyTo(fileStream);
-
-                //add this new Product internal model
-
-                _unitOfWork.Post.Add(ObjPost);
-                TempData["success"] = "Post added Successfully";
-
-                //associate the actual URL path and save to DB URLImage
-
-                Post NewPost = _unitOfWork.Post.GetByValue(ObjPost.Title);
-                ObjAttachment = new Attachment();
-                ObjAttachment.MediaLink = @"\images\products\" + fileName + extension;
-                ObjAttachment.Name = fileName;
-                ObjAttachment.PostId = NewPost.Id;
-                _unitOfWork.Attachment.Add(ObjAttachment);
                 
+                foreach (var file in files)
+                {
+                    //get and preserve the extension type
+                    var extension = Path.GetExtension(file.FileName);
+
+                    // create the full upload path 
+
+                    var fullPath = uploads + fileName + extension;
+
+                    //stream the binary write to the server
+
+                    using var fileStream = System.IO.File.Create(fullPath);
+                    file.CopyTo(fileStream);
+
+                    //add this new Product internal model
+
+                    _unitOfWork.Post.Add(ObjPost);
+                    TempData["success"] = "Post added Successfully";
+
+                    //associate the actual URL path and save to DB URLImage
+
+                    ObjAttachment = new Attachment();
+                    ObjAttachment.MediaLink = @"\images\products\" + fileName + extension;
+                    ObjAttachment.Name = fileName;
+                    ObjAttachment.PostId = NewPost.Id;
+                    _unitOfWork.Attachment.Add(ObjAttachment);
+                }
             }
             
-
         }
 
         //the item exists, so we're updating it
