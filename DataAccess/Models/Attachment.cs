@@ -14,6 +14,9 @@ namespace DataAccess.Models
         public string MediaLink { get; set; }
 
         [Required]
+        public string Name { get; set; }
+
+        [Required]
         [ForeignKey("Post")]
         public Guid PostId { get; set; }
     }

@@ -40,5 +40,9 @@
   <ItemGroup>
     <Folder Include="Pages\PostDetail\" />
     <Folder Include="Pages\PostPage\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\images\" />
   </ItemGroup>
 </Project>

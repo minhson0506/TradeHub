@@ -138,6 +138,11 @@ namespace Infrastructure
             return _dbContext.Set<T>().Find(id);
         }
 
+        public virtual Post GetByValue(string name)
+        {
+            return _dbContext.Posts.FirstOrDefault(u => string.Compare(u.Title, "sond@metropolia.fi") == 0);
+        }
+
         public virtual async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, Expression<Func<T, int>> orderBy = null, string includes = null)
         {
             IQueryable<T> queryable = _dbContext.Set<T>();
