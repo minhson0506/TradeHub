@@ -1,0 +1,124 @@
+@page
+@model TradeHub.Pages.PostPage.UpsertModel
+@{
+}
+
+<form method="post"  enctype="multipart/form-data">
+        <input asp-for="ObjPost.Id" hidden />
+        <input asp-for="ObjAttachment.MediaLink" hidden />
+
+        <div class="row">
+            <div class="col-10">
+                <div class="border p-3 mt-4 row">
+                    <div class="col-12 pb-2">
+                        <h2 class="text-primary">@(Model.ObjPost.Id != Guid.Empty ? "Update" : "Create")  Post</h2>
+                        <hr />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ObjPost.Title"></label>
+                        <input id="txtName" asp-for="ObjPost.Title" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ObjPost.Content"></label>
+                        <textarea id="txtDesc" asp-for="ObjPost.Content" rows="3" class="form-control"></textarea>
+                    </div>
+                    
+                    <div class="mb-3 col-6">
+                        <label asp-for="ObjPost.Price"></label>
+                        <input id="txtListPrice" asp-for="ObjPost.Price" class="form-control" />
+                    </div>
+                    
+                    
+                    <div class="mb-3">
+                        <label asp-for="@Model.ObjAttachment.MediaLink"></label>
+                        <input type="file" id="uploadBox" name="file" class="form-control" />
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label asp-for="ObjPost.StatusId"></label>
+                        <select id="ddlStatus" asp-for="ObjPost.StatusId" asp-items="@Model.StatusList" class="form-select">
+                            <option disabled selected>--Select Status--</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label asp-for="ObjPost.StatusId"></label>
+                        <select id="ddlStatus" asp-for="ObjPost.Tags[0].Id" asp-items="@Model.TagList" class="form-select">
+                            <option disabled selected>--Select Tag--</option>
+                        </select>
+                    </div>
+                    
+                    @* Tag *@
+                    <!--<div class="mb-3 col-6">
+                        <label asp-for="TagInput">Tags (Separate tags with commas)</label>
+                        <input type="text" id="txtTags" asp-for="TagInput" class="form-control"/>
+                    </div>-->
+
+                    <div class="col-12">
+                        @if (Model.ObjPost.Id != Guid.Empty)
+                        {
+                            <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+                        }
+                        else
+                        {
+                            <button type="submit"  class="btn btn-primary" style="width:150px">Create</button>
+                        }
+                        <a asp-page="Index" class="btn btn-secondary" style="width:150px">
+                            Back to List
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-2 pt-4">
+                <img src="@Model.ObjAttachment.MediaLink"
+                     width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+            </div>
+        </div>
+    </form>
+
+
+    @section Scripts{
+        <script>tinymce.init({
+                selector: 'textarea',
+                plugins: "lists",
+                menubar: "file edit format"
+            });
+    
+            function ValidateInput() {
+                if (document.getElementById('txtName') === null || document.getElementById('txtName').value === "") {
+                    swal.fire('Error', 'Please Enter a Post Title', 'error');
+                    return false;
+                }
+    
+    
+                if (document.getElementById('txtDesc') === null || document.getElementById('txtDesc').value === "") {
+                    swal.fire('Error', 'Please Enter some description ', 'error');
+                    return false;
+                }
+    
+                if ($('#txtListPrice') === null || $('#txtListPrice').val() < .01) {
+                    swal.fire('Error', 'Please Enter a Price Greater Than $.01', 'error');
+                    return false;
+                }
+    
+                if (document.getElementById("uploadBox").value === "") {
+                    swal.fire('Error', 'Please Select an Image', 'error')
+                    return false
+                }
+    
+                if ($('#ddlStatus option:selected').val() === "--Select Status--" || $('#ddlStatus option:selected').val() === 0) {
+                    swal.fire('Error', 'Please Select a Status', 'error')
+                    return false
+                }
+    
+                if (document.getElementById('txtTags') === null || document.getElementById('txtTags').value === "") {
+                                    swal.fire('Error', 'Please Enter At Least One ', 'error');
+                                    return false;
+                                }
+    
+                return true;
+            }</script>
+    }
+
